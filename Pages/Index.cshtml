@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+
+<div class="card mb-3" style="max-width: 400px; margin: 0 auto;">
+    <div class="card-body">
+        @if (Model.IsLoggedIn)
+        {
+            <p style="font-size: 1.5rem;">Hello @User.Identity.Name ! You are logged in</p>
+            <form method="post" asp-page-handler="HandleLogout">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        }
+        else
+        {
+            <form method="post">
+                <legend>Login Form</legend>
+                <div asp-validation-summary="All" class="text-danger" style="margin-top: 10px;"></div>
+                <div class="mb-3">
+                    <label asp-for="UserInput.Username" class="form-label"></label>
+                    <input asp-for="UserInput.Username" class="form-control" required>
+                    <span asp-validation-for="UserInput.Username" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="UserInput.Password" class="form-label"></label>
+                    <input asp-for="UserInput.Password" type="password" class="form-control" required>
+                    <span asp-validation-for="UserInput.Password" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        }
+    </div>
+</div>
